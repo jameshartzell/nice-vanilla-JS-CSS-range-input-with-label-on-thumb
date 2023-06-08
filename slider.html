@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        .calctable {
+            /*border-collapse: collapse;*/
+            border-color: #545454;
+            /*border-spacing: 0;*/
+            border: #545454;
+            border-width: 2px;
+            border-radius: 3px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            width: 700px;
+        }
+        
+        td {
+            /*background-color: #fff;*/
+            /*border-color: #aaa;
+                border-style: solid;
+                border-width: 1px;*/
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            overflow: hidden;
+            /*padding: 10px 5px;*/
+            word-break: normal;
+        }
+        
+        .header {
+            position: -webkit-sticky;
+            position: sticky;
+            text-align: center;
+            top: -1px;
+            vertical-align: top;
+            will-change: transform;
+            font-size: x-large;
+            border-radius: 5px;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: white;
+            /*border-color: #545454;*/
+            border-style: hidden;
+            /*border-radius: 3px;*/
+            border-width: 1px;
+            color: rainbow;
+            font-family: Arial, sans-serif;
+            font-size: x-large;
+            font-weight: normal;
+            overflow: hidden;
+            padding: 5px;
+            word-break: break-all;
+            width: 50%;
+            animation: bgColor 5s infinite linear;
+        }
+        
+        @keyframes bgColor {
+            12.5% {
+                background-color: #FF0000;
+            }
+            25% {
+                background-color: #FFA500;
+            }
+            37.5% {
+                background-color: #FFFF00;
+            }
+            50% {
+                background-color: #7FFF00;
+            }
+            62.5% {
+                background-color: #00FFFF;
+            }
+            75% {
+                background-color: #0000FF;
+            }
+            87.5% {
+                background-color: #9932CC;
+            }
+            100% {
+                background-color: #FF1493;
+            }
+        }
+        
+        .cell {
+            vertical-align: middle;
+            word-wrap: normal;
+            width: 325px;
+            font-size: large;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            text-align: left !important;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            overflow: visible;
+            padding: 10px 5px;
+            word-break: normal;
+        }
+        
+        .label {
+            float: right;
+            vertical-align: middle;
+            margin-top: 5px;
+            font-size: x-large;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .sfcslider {
+            width: 90%;
+            max-width: 390px;
+            float: left;
+            min-width: 250px;
+            margin-left: 35px;
+            margin-right: none;
+            overflow: visible;
+        }
+        
+        .sliderlabel {
+            color: black;
+            text-align: center;
+            z-index: 20000;
+            /*float: right;*/
+            font-size: 12px;
+            /*margin-top: 15px;
+                margin-left: 5px;
+                margin-right: 3px;
+                padding-left: 10px;
+                vertical-align: middle;*/
+            overflow: visible;
+            font-weight: bold;
+            position: absolute;
+            pointer-events: none;
+            width: 30px;
+        }
+        
+        input[type=range] {
+            height: 45px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+        
+        input[type=range]:focus {
+            outline: none;
+        }
+        
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 10px;
+            cursor: pointer;
+            box-shadow: 1px 1px 0px #000000;
+            background: #C20B0B;
+            border-radius: 5px;
+            border: 3px solid #930808;
+        }
+        
+        input[type=range]::-webkit-slider-thumb {
+            box-shadow: 1px 1px 0px #000000;
+            border: 3px solid #930808;
+            height: 25px;
+            width: 40px;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin-top: -10.5px;
+        }
+        
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #C20B0B;
+        }
+        
+        input[type=range]::-moz-range-track {
+            /*width: 100%;*/
+            height: 10px;
+            cursor: pointer;
+            box-shadow: 1px 1px 0px #000000;
+            background: #C20B0B;
+            border-radius: 5px;
+            border: 3px solid #930808;
+        }
+        
+        input[type=range]::-moz-range-thumb {
+            box-shadow: 1px 1px 0px #000000;
+            border: 3px solid #930808;
+            height: 25px;
+            width: 40px;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: auto;
+            margin-top: -10.5px;
+        }
+        
+        input[type=range]::-ms-track {
+            /*width: 100%;*/
+            height: 12px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+        
+        input[type=range]::-ms-fill-lower {
+            background: #C20B0B;
+            border: 3px solid #930808;
+            border-radius: 10px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+        
+        input[type=range]::-ms-fill-upper {
+            background: #C20B0B;
+            border: 3px solid #930808;
+            border-radius: 10px;
+            box-shadow: 1px 1px 0px #000000;
+        }
+        
+        input[type=range]::-ms-thumb {
+            box-shadow: 1px 1px 0px #000000;
+            border: 3px solid #930808;
+            height: 25px;
+            width: 40px;
+            border-radius: 12px;
+            background: white;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: auto;
+            margin-top: -10.5px;
+        }
+        
+        input[type=range]:focus::-ms-fill-lower {
+            background: #C20B0B;
+        }
+        
+        input[type=range]:focus::-ms-fill-upper {
+            background: #C20B0B;
+        }
+    </style>
+</head>
+
+<body>
+    <datalist id="steplist">
+        <option>0</option>
+        <option>10</option>
+        <option>20</option>
+        <option>30</option>
+        <option>40</option>
+        <option>50</option>
+        <option>60</option>
+        <option>70</option>
+        <option>80</option>
+        <option>90</option>
+        <option>100</option>
+    </datalist>
+    <div style="display: table;" class="calctable" id="calctable">
+        <div style="display: table-header-group;">
+            <div style="display: table-row;">
+                <div style="display: table-cell;" class="header" colspan="3">this took too fucking much time</td>
+                </div>
+            </div>
+            <div style="display: table-row-group;">
+                <div style="display: table-row;">
+                    <div style="display: table-cell;" class="cell">Cool Text</div>
+                    <div class="sliderwrap">
+                        <div style="display: table-cell;" class="cell">
+                            <input type="range" class="sfcslider" id="mySlider" min="0" max="100" value="0" step="10" list="steplist">
+                            <label id="sliderlabel" class="sliderlabel">0%</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var mySlider = document.getElementById("mySlider");
+        var sliderlabel = document.getElementById("sliderlabel");
+        sliderlabel.innerHTML = mySlider.value + '%';
+
+        //necessary setup
+        window.addEventListener("resize", (event) => {
+            const allRanges = document.querySelectorAll(".sliderwrap");
+            allRanges.forEach(wrap => {
+                const range = wrap.querySelector(".sfcslider");
+                const bubble = wrap.querySelector(".sliderlabel");
+                bubble.style.zindex = "20000";
+                setBubble(range, bubble);
+            });
+        });
+
+        //necessary setup
+        const allRanges = document.querySelectorAll(".sliderwrap");
+        allRanges.forEach(wrap => {
+            const range = wrap.querySelector(".sfcslider");
+            const bubble = wrap.querySelector(".sliderlabel");
+            bubble.style.zindex = "20000";
+
+            range.addEventListener("input", () => {
+                setBubble(range, bubble);
+            });
+            setBubble(range, bubble);
+        });
+
+        //the important one
+        function setBubble(range, bubble) {
+            //slider
+            var sliderYpos = range.getBoundingClientRect().y;
+            var sliderLeft = range.getBoundingClientRect().left;
+            sliderLeft += 22;
+            //setting left bound of logical slider to center of thumb while the thumb is all the way to the left
+            var sliderWidth = range.offsetWidth;
+            var sliderRight = sliderLeft + sliderWidth;
+            sliderRight -= 22;
+            //setting right bound of logical slider to center of thumb while the thumb is all the way to the right
+            sliderWidth = sliderRight - sliderLeft;
+            var sliderCenter = sliderLeft + (sliderWidth / 2);
+
+            //thumb
+            var percentOfRange = range.value / (range.max - range.min);
+            var thumbWidth = 40;
+            var thumbCenter = sliderLeft + ((sliderWidth * percentOfRange) * .91);
+            //.91 is a magical factor that scales percentOfRange to match adjust left & right bounds, further correcting the offset of the thumb
+
+            //label
+            var bubbleYpos = bubble.getBoundingClientRect().y;
+            var bubbleLeft = bubble.getBoundingClientRect().left;
+            var bubbleWidth = bubble.offsetWidth;
+            var bubbleRight = bubbleLeft + bubbleWidth;
+            var bubbleCenter = bubbleLeft + (bubbleWidth / 2);
+
+            //actually move label to slider thumb
+            bubble.style.left = (thumbCenter - (bubbleWidth / 2)) + "px";
+            bubble.style.top = (sliderYpos + 16) + "px";
+        }
+
+        mySlider.oninput = function() {
+            sliderlabel.innerHTML = this.value + '%';
+        }
+    </script>
+</body>
+
+</html>
