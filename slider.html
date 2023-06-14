@@ -326,13 +326,11 @@
             //setting right bound of logical slider to center of thumb while the thumb is all the way to the right
             sliderWidth = sliderRight - sliderLeft;
             var sliderCenter = sliderLeft + (sliderWidth / 2);
-
             //thumb
             var percentOfRange = range.value / (range.max - range.min);
             var thumbWidth = 40;
             var thumbCenter = sliderLeft + ((sliderWidth * percentOfRange) * .91);
-            //.91 is a magical factor that scales percentOfRange to match adjust left & right bounds, further correcting the offset of the thumb
-
+            //.91 is a magical factor that scales percentOfRange to match the adjusted left & right bounds, further correcting the offset of the thumb
             //label
             var bubbleYpos = bubble.getBoundingClientRect().y;
             var bubbleLeft = bubble.getBoundingClientRect().left;
